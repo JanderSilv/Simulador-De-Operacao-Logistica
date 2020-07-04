@@ -6,6 +6,7 @@ const AppStack = createStackNavigator();
 
 import Home from './pages/home';
 import InitialSetup from './pages/initialSetup';
+import ListSteps from './pages/ListSteps';
 
 export default function Routes() {
     return (
@@ -19,6 +20,11 @@ export default function Routes() {
                 <AppStack.Screen
                     name="InitialSetup"
                     component={InitialSetup}
+                    options={{ headerShown: false }}
+                />
+                <AppStack.Screen
+                    name="ListSteps"
+                    component={ListSteps}
                     options={{ headerShown: false }}
                 />
             </AppStack.Navigator>
