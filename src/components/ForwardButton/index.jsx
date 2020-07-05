@@ -5,8 +5,14 @@ import { useNavigation } from '@react-navigation/native';
 // import { Container } from './styles';
 
 const ForwardButton = (props) => {
-    const { title, page, style } = props;
+    const { title, page, style, action, params } = props;
     const navigation = useNavigation();
+
+    const handleOnPress = () => {
+        params ? navigation.navigate(page, params) : navigation.navigate(page);
+        action ? action() : null;
+    };
+
     return (
         <View
             style={{
@@ -15,7 +21,7 @@ const ForwardButton = (props) => {
             }}
         >
             <TouchableOpacity
-                onPress={() => navigation.navigate(page)}
+                onPress={handleOnPress}
                 style={[
                     style,
                     {

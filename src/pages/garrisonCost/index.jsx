@@ -1,0 +1,91 @@
+import React, { useContext, useState, useEffect } from 'react';
+import { View, Text, TextInput } from 'react-native';
+import Constants from 'expo-constants';
+
+import StepsContext from '../../contexts/steps';
+
+import FowardButton from '../../components/ForwardButton';
+import { style } from '../../globalStyles';
+
+const GarrisonCost = () => {
+    const { tasks, GetTask } = useContext(StepsContext);
+
+    const [data, setData] = useState({});
+
+    useEffect(() => {
+        const handleSetData = () => {
+            setData(GetTask());
+        };
+        handleSetData();
+    }, []);
+
+    return (
+        <View
+            style={{
+                paddingTop: Constants.statusBarHeight + 40,
+                flex: 1,
+            }}
+        >
+            <View
+                style={{
+                    paddingHorizontal: 20,
+                    flex: 0.2,
+                    justifyContent: 'space-around',
+                }}
+            >
+                <Text style={{ fontSize: 18, alignSelf: 'center' }}>
+                    Custo com Guarnição:
+                </Text>
+                <Text
+                    style={{ fontSize: 16 }}
+                >{`${data.index}° Etapa: ${data.data}`}</Text>
+            </View>
+            <View style={{ flex: 0.4, justifyContent: 'space-around' }}>
+                <View style={{ marginTop: 20, alignItems: 'center' }}>
+                    <Text>Tempo de Operação (normal)</Text>
+                    <TextInput
+                        style={[
+                            {
+                                width: '90%',
+                                marginTop: 5,
+                            },
+                            style.inputContainer,
+                        ]}
+                    />
+                </View>
+                <View style={{ marginTop: 20, alignItems: 'center' }}>
+                    <Text>Tempo de Operação (50%)</Text>
+                    <TextInput
+                        style={[
+                            {
+                                width: '90%',
+                                marginTop: 5,
+                            },
+                            style.inputContainer,
+                        ]}
+                    />
+                </View>
+                <View style={{ marginTop: 20, alignItems: 'center' }}>
+                    <Text>Tempo de Operação (100%)</Text>
+                    <TextInput
+                        style={[
+                            {
+                                width: '90%',
+                                marginTop: 5,
+                            },
+                            style.inputContainer,
+                        ]}
+                    />
+                </View>
+            </View>
+            <FowardButton
+                style={{ marginTop: 40 }}
+                // action={submitSteps}
+                page="ShippingCost"
+                params={data}
+            />
+        </View>
+    );
+};
+
+export default GarrisonCost;

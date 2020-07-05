@@ -6,7 +6,10 @@ const AppStack = createStackNavigator();
 
 import Home from './pages/home';
 import InitialSetup from './pages/initialSetup';
-import ListSteps from './pages/ListSteps';
+import ListSteps from './pages/listSteps';
+import GarrisonCost from './pages/garrisonCost';
+import ShippingCost from './pages/shippingCost';
+import EmployeeCost from './pages/employeeCost';
 
 export default function Routes() {
     return (
@@ -26,6 +29,21 @@ export default function Routes() {
                     name="ListSteps"
                     component={ListSteps}
                     options={{ headerShown: false }}
+                />
+                <AppStack.Screen
+                    name="GarrisonCost"
+                    component={GarrisonCost}
+                    options={{ headerShown: false }}
+                />
+                <AppStack.Screen
+                    name="ShippingCost"
+                    component={ShippingCost}
+                    options={{ title: 'Custo com Frota e Pernoite' }}
+                />
+                <AppStack.Screen
+                    name="EmployeeCost"
+                    component={EmployeeCost}
+                    options={{ title: 'Custo com Mão de Obra' }}
                 />
             </AppStack.Navigator>
         </NavigationContainer>
