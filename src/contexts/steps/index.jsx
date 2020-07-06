@@ -8,12 +8,14 @@ export const StepsProvider = ({ children }) => {
 
     const GetTask = () => {
         const aux = tasks.find((item) => item.isDone === false);
+        console.log('StepsContext');
+        console.log(aux);
         return aux;
     };
 
     const CheckTasks = () => {
         const aux = tasks.find((item) => item.isDone === false);
-        aux ? true : false;
+        return aux ? true : false;
     };
 
     return (

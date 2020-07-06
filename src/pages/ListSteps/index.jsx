@@ -30,7 +30,7 @@ const ListSteps = () => {
 
     const removeStep = () => {
         if (steps.length !== 0) {
-            console.log(steps);
+            // console.log(steps);
             let aux = steps.slice(0, -1);
             setSteps(aux);
         }

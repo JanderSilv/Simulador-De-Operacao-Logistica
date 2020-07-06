@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import Constants from 'expo-constants';
+import { useNavigation } from '@react-navigation/native';
 
 import StepsContext from '../../contexts/steps';
 
@@ -8,16 +9,22 @@ import FowardButton from '../../components/ForwardButton';
 import { style } from '../../globalStyles';
 
 const GarrisonCost = () => {
+    const navigation = useNavigation();
     const { tasks, GetTask } = useContext(StepsContext);
 
     const [data, setData] = useState({});
 
+    const handleSetData = () => {
+        setData(GetTask());
+    };
+
     useEffect(() => {
-        const handleSetData = () => {
-            setData(GetTask());
-        };
-        handleSetData();
-    }, []);
+        const unsubscribe = navigation.addListener('focus', () => {
+            handleSetData();
+        });
+
+        return unsubscribe;
+    }, [navigation]);
 
     return (
         <View
