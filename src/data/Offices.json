@@ -1,0 +1,266 @@
+[
+    {
+        "id": 1,
+        "name": "AFL"
+    },
+    {
+        "id": 2,
+        "name": "BAU"
+    },
+    {
+        "id": 3,
+        "name": "BEL"
+    },
+    {
+        "id": 4,
+        "name": "BGS"
+    },
+    {
+        "id": 5,
+        "name": "BHZ"
+    },
+    {
+        "id": 6,
+        "name": "BLU"
+    },
+    {
+        "id": 7,
+        "name": "BPG"
+    },
+    {
+        "id": 8,
+        "name": "BSB"
+    },
+    {
+        "id": 9,
+        "name": "CAW"
+    },
+    {
+        "id": 10,
+        "name": "CCX"
+    },
+    {
+        "id": 11,
+        "name": "CDI"
+    },
+    {
+        "id": 12,
+        "name": "CFO"
+    },
+    {
+        "id": 13,
+        "name": "CFR"
+    },
+    {
+        "id": 14,
+        "name": "CGB"
+    },
+    {
+        "id": 15,
+        "name": "CGR"
+    },
+    {
+        "id": 16,
+        "name": "CMG"
+    },
+    {
+        "id": 17,
+        "name": "CPQ"
+    },
+    {
+        "id": 18,
+        "name": "CWB"
+    },
+    {
+        "id": 19,
+        "name": "CXJ"
+    },
+    {
+        "id": 20,
+        "name": "DOU"
+    },
+    {
+        "id": 21,
+        "name": "FLB"
+    },
+    {
+        "id": 22,
+        "name": "FLN"
+    },
+    {
+        "id": 66,
+        "name": "IGU"
+    },
+    {
+        "id": 65,
+        "name": "ITA"
+    },
+    {
+        "id": 64,
+        "name": "ITP"
+    },
+    {
+        "id": 63,
+        "name": "JCB"
+    },
+    {
+        "id": 62,
+        "name": "JIA"
+    },
+    {
+        "id": 61,
+        "name": "JOI"
+    },
+    {
+        "id": 60,
+        "name": "JPA"
+    },
+    {
+        "id": 59,
+        "name": "LDB"
+    },
+    {
+        "id": 58,
+        "name": "LIN"
+    },
+    {
+        "id": 57,
+        "name": "MAO"
+    },
+    {
+        "id": 56,
+        "name": "MCZ"
+    },
+    {
+        "id": 55,
+        "name": "MGF"
+    },
+    {
+        "id": 54,
+        "name": "NAT"
+    },
+    {
+        "id": 53,
+        "name": "NVC"
+    },
+    {
+        "id": 52,
+        "name": "OPS"
+    },
+    {
+        "id": 51,
+        "name": "PET"
+    },
+    {
+        "id": 50,
+        "name": "PGZ"
+    },
+    {
+        "id": 49,
+        "name": "PMG"
+    },
+    {
+        "id": 48,
+        "name": "POA"
+    },
+    {
+        "id": 47,
+        "name": "QTB"
+    },
+    {
+        "id": 46,
+        "name": "RAO"
+    },
+    {
+        "id": 45,
+        "name": "REC"
+    },
+    {
+        "id": 44,
+        "name": "RIA"
+    },
+    {
+        "id": 43,
+        "name": "ROO"
+    },
+    {
+        "id": 23,
+        "name": "FOR"
+    },
+    {
+        "id": 24,
+        "name": "GYN"
+    },
+    {
+        "id": 25,
+        "name": "Três Lagoas"
+    },
+    {
+        "id": 26,
+        "name": "SAO"
+    },
+    {
+        "id": 27,
+        "name": "SCR"
+    },
+    {
+        "id": 28,
+        "name": "SJK"
+    },
+    {
+        "id": 29,
+        "name": "SJP"
+    },
+    {
+        "id": 30,
+        "name": "SLZ"
+    },
+    {
+        "id": 31,
+        "name": "SSA"
+    },
+    {
+        "id": 32,
+        "name": "SSZ"
+    },
+    {
+        "id": 33,
+        "name": "TGQ"
+    },
+    {
+        "id": 34,
+        "name": "THE"
+    },
+    {
+        "id": 35,
+        "name": "TLG"
+    },
+    {
+        "id": 36,
+        "name": "UMU"
+    },
+    {
+        "id": 37,
+        "name": "UVT"
+    },
+    {
+        "id": 38,
+        "name": "VDC"
+    },
+    {
+        "id": 39,
+        "name": "VIX"
+    },
+    {
+        "id": 40,
+        "name": "VRE"
+    },
+    {
+        "id": 41,
+        "name": "WBR"
+    },
+    {
+        "id": 42,
+        "name": "UDI"
+    }
+]
