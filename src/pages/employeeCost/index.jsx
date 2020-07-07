@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import FowardButton from '../../components/ForwardButton';
 import StepsContext from '../../contexts/steps';
-import { style } from '../../globalStyles';
+import { globalStyle } from '../../globalStyles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const EmployeeCost = ({ route }) => {
@@ -53,7 +53,7 @@ const EmployeeCost = ({ route }) => {
                                         width: '90%',
                                         marginTop: 5,
                                     },
-                                    style.inputContainer,
+                                    globalStyle.inputContainer,
                                 ]}
                             />
                         </View>
@@ -68,7 +68,7 @@ const EmployeeCost = ({ route }) => {
                                         width: '90%',
                                         marginTop: 5,
                                     },
-                                    style.inputContainer,
+                                    globalStyle.inputContainer,
                                 ]}
                             />
                         </View>

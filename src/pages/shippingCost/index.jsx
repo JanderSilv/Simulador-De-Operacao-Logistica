@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
 
 import FowardButton from '../../components/ForwardButton';
-import { style } from '../../globalStyles';
+import { globalStyle } from '../../globalStyles';
 
 const ShippingCost = ({ route }) => {
     const [data] = useState(route.params);
@@ -25,7 +25,7 @@ const ShippingCost = ({ route }) => {
                                 width: '90%',
                                 marginTop: 5,
                             },
-                            style.inputContainer,
+                            globalStyle.inputContainer,
                         ]}
                     />
                 </View>
@@ -37,7 +37,7 @@ const ShippingCost = ({ route }) => {
                                 width: '90%',
                                 marginTop: 5,
                             },
-                            style.inputContainer,
+                            globalStyle.inputContainer,
                         ]}
                     />
                 </View>
@@ -49,7 +49,7 @@ const ShippingCost = ({ route }) => {
                                 width: '90%',
                                 marginTop: 5,
                             },
-                            style.inputContainer,
+                            globalStyle.inputContainer,
                         ]}
                     />
                 </View>
