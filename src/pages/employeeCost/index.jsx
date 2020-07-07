@@ -40,7 +40,7 @@ const EmployeeCost = ({ route }) => {
                     <View style={{ marginTop: 20, marginHorizontal: 20 }}>
                         <Text
                             style={{ fontSize: 16 }}
-                        >{`${data.index}° Etapa: ${data.data}`}</Text>
+                        >{`${data.name}: ${data.value}`}</Text>
                     </View>
                     <View style={{ flex: 0.4, justifyContent: 'space-around' }}>
                         <View style={{ marginTop: 20, alignItems: 'center' }}>

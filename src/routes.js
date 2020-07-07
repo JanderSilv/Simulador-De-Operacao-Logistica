@@ -23,12 +23,12 @@ export default function Routes() {
                 <AppStack.Screen
                     name="InitialSetup"
                     component={InitialSetup}
-                    options={{ headerShown: false }}
+                    options={{ title: 'Configurações Iniciais' }}
                 />
                 <AppStack.Screen
                     name="ListSteps"
                     component={ListSteps}
-                    options={{ headerShown: false }}
+                    options={{ title: 'Listagem de Etapas' }}
                 />
                 <AppStack.Screen
                     name="GarrisonCost"

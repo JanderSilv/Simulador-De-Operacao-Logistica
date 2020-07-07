@@ -11,25 +11,53 @@ import Constants from 'expo-constants';
 
 import FowardButton from '../../components/ForwardButton';
 import StepsContext from '../../contexts/steps';
-import { style } from '../../globalStyles';
+import { globalStyle } from '../../globalStyles';
+import { style } from './styles';
+
+const HandleRenderSteps = ({ value, name, handleInput }) => (
+    <View style={style.stepsContainer}>
+        <Text style={{ marginBottom: 5, alignSelf: 'flex-start' }}>{name}</Text>
+        <TextInput
+            style={[style.inputContainer, globalStyle.inputContainer]}
+            value={value}
+            onChangeText={(text) => {
+                handleInput(text);
+            }}
+        />
+    </View>
+);
 
 const ListSteps = () => {
     const { setTasks } = useContext(StepsContext);
-    const [steps, setSteps] = useState([1]);
-    const [stepsData, setStepsData] = useState([]);
+    const [steps, setSteps] = useState([
+        { name: `1° Etapa`, value: ``, isDone: false },
+    ]);
     // console.log(steps);
 
+    const handleChanges = (index, value, name) => {
+        let copyInputs = [...steps];
+        let objChangeCopy = {
+            ...copyInputs[index],
+            value,
+        };
+        copyInputs.splice(index, 1, objChangeCopy);
+        setSteps(copyInputs);
+    };
+
     const addStep = () => {
-        if (steps.length === 0) {
-            setSteps([1]);
-        } else {
-            const aux = [...steps, steps[steps.length - 1] + 1];
-            setSteps(aux);
-        }
+        const newInput = {
+            name: `${steps.length + 1}° Etapa`,
+            value: ``,
+            isDone: false,
+        };
+        let copyInputs = [...steps];
+        copyInputs.push(newInput);
+        setSteps(copyInputs);
     };
 
     const removeStep = () => {
-        if (steps.length !== 0) {
+        console.log();
+        if (steps.length > 1) {
             // console.log(steps);
             let aux = steps.slice(0, -1);
             setSteps(aux);
@@ -37,46 +65,53 @@ const ListSteps = () => {
     };
 
     const submitSteps = () => {
-        let index = 0;
-        let aux = [];
-        stepsData.map((item) => {
-            aux.push({ index: steps[index], data: item, isDone: false });
-            index++;
-        });
-        setTasks(aux);
+        console.log(steps);
+        setTasks(steps);
     };
-
-    const handleRenderSteps = ({ index, item }) => (
-        <View
-            key={item}
-            style={{
-                marginTop: 5,
-                alignItems: 'center',
-                justifyContent: 'space-around',
-            }}
-        >
-            <Text style={{ marginBottom: 5, alignSelf: 'flex-start' }}>
-                {`${item}° Etapa`}
-            </Text>
-            <TextInput
-                style={{
-                    width: '100%',
-                    marginBottom: 10,
-                    ...style.inputContainer,
-                }}
-                value={stepsData[index]}
-                onChangeText={(text) => {
-                    let aux = stepsData;
-                    aux[index] = text;
-                    setStepsData(aux);
-                }}
-            />
-        </View>
-    );
 
     const handleSeparatorSteps = () => (
         <View style={{ alignItems: 'center' }}>
             <AntDesign name="arrowdown" size={35} color="gray" />
+        </View>
+    );
+
+    const handleFooter = () => (
+        <View style={{ alignItems: 'center', marginBottom: 10 }}>
+            <Feather name="more-horizontal" size={40} color="gray" />
+            <View style={style.buttonsContainer}>
+                {steps.length !== 1 && (
+                    <TouchableOpacity
+                        style={{ backgroundColor: 'red', ...style.button }}
+                        onPress={removeStep}
+                    >
+                        <Text style={{ color: 'white' }}>
+                            Remover última etapa
+                        </Text>
+                    </TouchableOpacity>
+                )}
+                <TouchableOpacity
+                    style={{ backgroundColor: 'green', ...style.button }}
+                    onPress={addStep}
+                >
+                    <Text style={{ color: 'white' }}>Adicionar nova etapa</Text>
+                </TouchableOpacity>
+            </View>
+            {/* <TouchableOpacity
+            style={{
+                paddingVertical: 10,
+                paddingHorizontal: 10,
+                backgroundColor: 'green',
+                borderRadius: 10,
+            }}
+            onPress={() => console.log(stepsData)}
+        >
+            <Text style={{ color: 'white' }}>Finalizar</Text>
+        </TouchableOpacity> */}
+            <FowardButton
+                style={{ marginTop: 40 }}
+                action={submitSteps}
+                page="GarrisonCost"
+            />
         </View>
     );
 
@@ -94,69 +129,21 @@ const ListSteps = () => {
             </View>
             <FlatList
                 data={steps}
-                keyExtractor={(item) => item.toString()}
-                renderItem={handleRenderSteps}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item, index }) => (
+                    <HandleRenderSteps
+                        name={item.name}
+                        value={item.value}
+                        position={index}
+                        handleInput={(value) =>
+                            handleChanges(index, value, item.name)
+                        }
+                    />
+                )}
                 ItemSeparatorComponent={handleSeparatorSteps}
-                style={{
-                    width: '100%',
-                    paddingHorizontal: '10%',
-                    // backgroundColor: 'red',
-                    flexGrow: 0,
-                }}
+                ListFooterComponent={handleFooter}
+                style={style.flatList}
             />
-            <View style={{ alignItems: 'center', marginBottom: 10 }}>
-                <Feather name="more-horizontal" size={40} color="gray" />
-                <View
-                    style={{
-                        width: '100%',
-                        flexDirection: 'row',
-                        justifyContent: 'space-around',
-                    }}
-                >
-                    <TouchableOpacity
-                        style={{
-                            paddingVertical: 10,
-                            paddingHorizontal: 10,
-                            backgroundColor: 'red',
-                            borderRadius: 10,
-                        }}
-                        onPress={removeStep}
-                    >
-                        <Text style={{ color: 'white' }}>
-                            Remover última etapa
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={{
-                            paddingVertical: 10,
-                            paddingHorizontal: 10,
-                            backgroundColor: 'green',
-                            borderRadius: 10,
-                        }}
-                        onPress={addStep}
-                    >
-                        <Text style={{ color: 'white' }}>
-                            Adicionar nova etapa
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-                {/* <TouchableOpacity
-                    style={{
-                        paddingVertical: 10,
-                        paddingHorizontal: 10,
-                        backgroundColor: 'green',
-                        borderRadius: 10,
-                    }}
-                    onPress={() => console.log(stepsData)}
-                >
-                    <Text style={{ color: 'white' }}>Finalizar</Text>
-                </TouchableOpacity> */}
-                <FowardButton
-                    style={{ marginTop: 40 }}
-                    action={submitSteps}
-                    page="GarrisonCost"
-                />
-            </View>
         </View>
     );
 };

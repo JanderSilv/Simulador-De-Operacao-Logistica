@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import StepsContext from '../../contexts/steps';
 
 import FowardButton from '../../components/ForwardButton';
-import { style } from '../../globalStyles';
+import { globalStyle } from '../../globalStyles';
 
 const GarrisonCost = () => {
     const navigation = useNavigation();
@@ -45,7 +45,7 @@ const GarrisonCost = () => {
                 </Text>
                 <Text
                     style={{ fontSize: 16 }}
-                >{`${data.index}° Etapa: ${data.data}`}</Text>
+                >{`${data.name}: ${data.value}`}</Text>
             </View>
             <View style={{ flex: 0.4, justifyContent: 'space-around' }}>
                 <View style={{ marginTop: 20, alignItems: 'center' }}>
@@ -56,7 +56,7 @@ const GarrisonCost = () => {
                                 width: '90%',
                                 marginTop: 5,
                             },
-                            style.inputContainer,
+                            globalStyle.inputContainer,
                         ]}
                     />
                 </View>
@@ -68,7 +68,7 @@ const GarrisonCost = () => {
                                 width: '90%',
                                 marginTop: 5,
                             },
-                            style.inputContainer,
+                            globalStyle.inputContainer,
                         ]}
                     />
                 </View>
@@ -80,7 +80,7 @@ const GarrisonCost = () => {
                                 width: '90%',
                                 marginTop: 5,
                             },
-                            style.inputContainer,
+                            globalStyle.inputContainer,
                         ]}
                     />
                 </View>

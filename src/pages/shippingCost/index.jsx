@@ -11,7 +11,7 @@ const ShippingCost = ({ route }) => {
             <View style={{ marginTop: 20, marginHorizontal: 20 }}>
                 <Text
                     style={{ fontSize: 16 }}
-                >{`${data.index}° Etapa: ${data.data}`}</Text>
+                >{`${data.name}: ${data.value}`}</Text>
                 <Text style={{ marginTop: 20, alignSelf: 'center' }}>
                     Busque os dados no Qalp
                 </Text>
