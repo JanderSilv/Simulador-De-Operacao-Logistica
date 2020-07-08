@@ -33,7 +33,7 @@ export default function Routes() {
                 <AppStack.Screen
                     name="GarrisonCost"
                     component={GarrisonCost}
-                    options={{ headerShown: false }}
+                    options={{ title: 'Custo com Guarnição' }}
                 />
                 <AppStack.Screen
                     name="ShippingCost"
