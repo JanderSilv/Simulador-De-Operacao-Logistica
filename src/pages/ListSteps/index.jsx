@@ -65,7 +65,7 @@ const ListSteps = () => {
     };
 
     const submitSteps = () => {
-        console.log(steps);
+        // console.log(steps);
         setTasks(steps);
     };
 
