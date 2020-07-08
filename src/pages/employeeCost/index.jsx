@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -9,26 +9,32 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const EmployeeCost = ({ route }) => {
     const { tasks, setTasks, CheckTasks } = useContext(StepsContext);
-    const [data] = useState(route.params);
-    const [isCompleted, setIsCompleted] = useState(false);
 
     const navigation = useNavigation();
 
+    const [data] = useState(route.params);
+    const [monitoringAssistant, setMonitoringAssistant] = useState('');
+    const [logisticOperation, setLogisticOperation] = useState('');
+
+    const [isCompleted, setIsCompleted] = useState(false);
+    const [isDisabled, setIsDisabled] = useState(true);
+
+    useEffect(() => {
+        const CheckInputs = () => {
+            if (monitoringAssistant && logisticOperation) setIsDisabled(false);
+        };
+        CheckInputs();
+    }, [monitoringAssistant, logisticOperation]);
+
     const handleCompleteTask = () => {
+        console.log(tasks);
         let auxData = data;
         auxData.isDone = true;
         let auxTask = tasks;
-        auxTask[data.index - 1] = auxData;
+        auxTask[tasks.findIndex((item) => item.name === data.name)] = auxData;
         // console.log(auxTask);
         setTasks(auxTask);
 
-        // let index = .indexOf(data.index);
-
-        // if (index !== -1) {
-        //     items[index] = 1010;
-        // }
-
-        // setTasks()
         if (CheckTasks()) navigation.navigate('GarrisonCost');
         else setIsCompleted(true);
     };
@@ -55,6 +61,10 @@ const EmployeeCost = ({ route }) => {
                                     },
                                     globalStyle.inputContainer,
                                 ]}
+                                value={monitoringAssistant}
+                                onChangeText={(text) =>
+                                    setMonitoringAssistant(text)
+                                }
                             />
                         </View>
                         <View style={{ marginTop: 20, alignItems: 'center' }}>
@@ -70,11 +80,27 @@ const EmployeeCost = ({ route }) => {
                                     },
                                     globalStyle.inputContainer,
                                 ]}
+                                value={logisticOperation}
+                                onChangeText={(text) =>
+                                    setLogisticOperation(text)
+                                }
                             />
                         </View>
                     </View>
-                    <TouchableOpacity onPress={handleCompleteTask}>
-                        <Text>Finalizar</Text>
+                    <FowardButton
+                        // disabled={isDisabled ? true : false}
+                        disabledStyle={{ marginTop: 40 }}
+                        style={{ marginTop: 40 }}
+                        action={handleCompleteTask}
+                        // page="ShippingCost"
+                        // params={data}
+                        title={CheckTasks() ? 'Finalizar' : 'Avançar'}
+                    />
+                    <TouchableOpacity
+                        style={{ marginTop: 40, alignSelf: 'center' }}
+                        onPress={handleCompleteTask}
+                    >
+                        <Text>{}</Text>
                     </TouchableOpacity>
                 </>
             ) : (

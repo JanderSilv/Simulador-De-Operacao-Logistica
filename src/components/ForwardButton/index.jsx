@@ -17,7 +17,14 @@ const ForwardButton = (props) => {
     const navigation = useNavigation();
 
     const handleOnPress = () => {
-        params ? navigation.navigate(page, params) : navigation.navigate(page);
+        if (page && params) {
+            navigation.navigate(page, params);
+        } else if (page) {
+            navigation.navigate(page);
+        } else {
+            null;
+        }
+        // params ? navigation.navigate(page, params) : navigation.navigate(page);
         action ? action() : null;
     };
 
