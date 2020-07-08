@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import React from 'react';
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
-import CitysData from '../../../../data/citys.json';
-
 const SearchableDropdownComponent = (props) => {
-    const { setOrigin, setDestiny, origin } = props;
-    const [citys] = useState(CitysData);
+    const {
+        setState,
+        data,
+        placeholder,
+        containerStyle,
+        autoCapitalize,
+    } = props;
 
     // useEffect(() => {
     //     const getCitys = () => {
@@ -30,12 +32,13 @@ const SearchableDropdownComponent = (props) => {
 
     return (
         <SearchableDropdown
-            items={citys}
+            items={data}
             onItemSelect={(item) => {
-                // console.log(item);
-                origin ? setOrigin(item) : setDestiny(item);
+                setState(item);
             }}
-            containerStyle={{ width: '40%', padding: 5 }}
+            containerStyle={
+                containerStyle ? containerStyle : { width: '40%', padding: 5 }
+            }
             itemStyle={{
                 padding: 10,
                 marginTop: 2,
@@ -49,8 +52,9 @@ const SearchableDropdownComponent = (props) => {
             // defaultIndex={0}
             resetValue={false}
             textInputProps={{
-                placeholder: origin ? 'Origem' : 'Destino',
+                placeholder: placeholder,
                 underlineColorAndroid: 'transparent',
+                autoCapitalize: autoCapitalize ? autoCapitalize : 'none',
                 style: {
                     padding: 12,
                     borderWidth: 1,

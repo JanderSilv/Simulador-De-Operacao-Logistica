@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Text } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import Constants from 'expo-constants';
 
+import CitysData from '../../data/citys.json';
 import FowardButton from '../../components/ForwardButton';
-import SearchableDropdown from './components/SearchableDropdown';
+import SearchableDropdown from '../../components/SearchableDropdown';
 
 import { globalStyle } from '../../globalStyles';
 
@@ -64,20 +64,25 @@ const InitialSetup = () => {
                         }}
                     >
                         <SearchableDropdown
-                            origin
-                            setOrigin={setSelectedOrigin}
+                            data={CitysData}
+                            setState={setSelectedOrigin}
+                            placeholder={'Origem'}
                         />
                         <MaterialIcons
                             name="compare-arrows"
                             size={40}
                             color={'gray'}
                         />
-                        <SearchableDropdown setDestiny={setSelectedDestiny} />
+                        <SearchableDropdown
+                            data={CitysData}
+                            setState={setSelectedDestiny}
+                            placeholder={'Destino'}
+                        />
                     </View>
                 </View>
             </View>
             <FowardButton
-                disabled={isDisabled ? true : false}
+                // disabled={isDisabled ? true : false}
                 page="ListSteps"
                 style={{ width: 100 }}
             />
