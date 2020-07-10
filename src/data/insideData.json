@@ -1,0 +1,35 @@
+[
+    {
+        "client": "Samsung",
+        "destiny": {
+            "id": 1100023,
+            "name": "Ariquemes"
+        },
+        "hotelPrice": "100",
+        "origin": {
+            "id": 1100023,
+            "name": "Ariquemes"
+        },
+        "taxiPrice": "60"
+    },
+    {
+        "fiftyOpTime": "A",
+        "hundredOpTime": "A",
+        "normalOpTime": "A",
+        "office": {
+            "fifty": 211.15148966882276,
+            "hundred": 281.53531955843033,
+            "name": "SAO",
+            "normal": 140.76765977921517,
+            "workedDay": 1173.0169089402
+        }
+    },
+    {
+        "Guarnição": 4504.565112934885,
+        "Frota": 540,
+        "Hospedagem": 0,
+        "Refeição": 0,
+        "Taxi": 0,
+        "Total": 5044.565112934885
+    }
+]

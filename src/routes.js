@@ -10,6 +10,7 @@ import ListSteps from './pages/listSteps';
 import GarrisonCost from './pages/garrisonCost';
 import ShippingCost from './pages/shippingCost';
 import EmployeeCost from './pages/employeeCost';
+import OperationReport from './pages/operationReport';
 
 export default function Routes() {
     return (
@@ -44,6 +45,11 @@ export default function Routes() {
                     name="EmployeeCost"
                     component={EmployeeCost}
                     options={{ title: 'Custo com Mão de Obra' }}
+                />
+                <AppStack.Screen
+                    name="OperationReport"
+                    component={OperationReport}
+                    options={{ title: 'Relatório da Operação' }}
                 />
             </AppStack.Navigator>
         </NavigationContainer>
