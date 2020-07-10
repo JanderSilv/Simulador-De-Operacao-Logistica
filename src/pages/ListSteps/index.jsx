@@ -56,7 +56,6 @@ const ListSteps = () => {
     };
 
     const removeStep = () => {
-        console.log();
         if (steps.length > 1) {
             // console.log(steps);
             let aux = steps.slice(0, -1);

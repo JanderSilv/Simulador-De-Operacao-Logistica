@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TextInput } from 'react-native';
 
-import Offices from '../../data/offices.json';
+import OperationReportContext from '../../contexts/operationReport';
 
-import SearchableDropdown from '../../components/SearchableDropdown';
 import FowardButton from '../../components/ForwardButton';
 import { globalStyle } from '../../globalStyles';
 
 const ShippingCost = ({ route }) => {
+    const { setShippingCost } = useContext(OperationReportContext);
+
     const [data] = useState(route.params);
-    const [nights, setNights] = useState('');
     const [vehicle, setVehicle] = useState('');
-    const [office, setOffice] = useState(null);
     const [toll, setToll] = useState('');
     const [fuel, setFuel] = useState('');
 
@@ -19,12 +18,20 @@ const ShippingCost = ({ route }) => {
 
     useEffect(() => {
         const CheckInputs = () => {
-            if (nights && vehicle && office && toll && fuel)
-                setIsDisabled(false);
+            if (vehicle && toll && fuel) setIsDisabled(false);
             else setIsDisabled(true);
         };
         CheckInputs();
-    }, [nights, vehicle, office, toll, fuel]);
+    }, [vehicle, toll, fuel]);
+
+    const handleShippingData = () => {
+        const shippingData = {
+            vehicle: parseInt(vehicle),
+            toll: parseFloat(toll),
+            fuel: parseFloat(fuel),
+        };
+        setShippingCost(shippingData);
+    };
 
     return (
         <View style={{ flex: 1 }}>
@@ -56,6 +63,7 @@ const ShippingCost = ({ route }) => {
                     >
                         <Text>Quantidade de Veículos</Text>
                         <TextInput
+                            keyboardType="numeric"
                             style={{
                                 width: '100%',
                                 marginTop: 5,
@@ -65,40 +73,6 @@ const ShippingCost = ({ route }) => {
                             onChangeText={setVehicle}
                         />
                     </View>
-                    <View
-                        style={{
-                            width: '40%',
-                        }}
-                    >
-                        <Text>Quantidade Pernoite</Text>
-                        <TextInput
-                            style={[
-                                {
-                                    width: '100%',
-                                    marginTop: 5,
-                                },
-                                globalStyle.inputContainer,
-                            ]}
-                            value={nights}
-                            onChangeText={(text) => setNights(text)}
-                        />
-                    </View>
-                </View>
-                <View
-                    style={{
-                        width: '100%',
-                        marginTop: 20,
-                        alignItems: 'center',
-                    }}
-                >
-                    <Text>Selecione a Filial</Text>
-                    <SearchableDropdown
-                        data={Offices}
-                        setState={setOffice}
-                        placeholder={'Filial'}
-                        containerStyle={{ width: '70%' }}
-                        autoCapitalize={'characters'}
-                    />
                 </View>
             </View>
             <Text style={{ marginTop: 20, fontSize: 16, alignSelf: 'center' }}>
@@ -108,6 +82,7 @@ const ShippingCost = ({ route }) => {
                 <View style={{ marginTop: 20, alignItems: 'center' }}>
                     <Text>Custo total de pedágio</Text>
                     <TextInput
+                        keyboardType="numeric"
                         style={[
                             {
                                 width: '90%',
@@ -122,6 +97,7 @@ const ShippingCost = ({ route }) => {
                 <View style={{ marginTop: 20, alignItems: 'center' }}>
                     <Text>Custo total de Combustível</Text>
                     <TextInput
+                        keyboardType="numeric"
                         style={[
                             {
                                 width: '90%',
@@ -138,7 +114,7 @@ const ShippingCost = ({ route }) => {
                 // disabled={isDisabled ? true : false}
                 disabledStyle={{ marginTop: 60 }}
                 style={{ marginTop: 60 }}
-                // action={submitSteps}
+                action={handleShippingData}
                 page="EmployeeCost"
                 params={data}
             />

@@ -2,12 +2,17 @@ import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import FowardButton from '../../components/ForwardButton';
 import StepsContext from '../../contexts/steps';
+import OperationReportContext from '../../contexts/operationReport';
+
+import FowardButton from '../../components/ForwardButton';
 import { globalStyle } from '../../globalStyles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const EmployeeCost = ({ route }) => {
+    const { setEmployeeCost, handleSteps, GenerateReport } = useContext(
+        OperationReportContext
+    );
     const { tasks, setTasks, CheckTasks } = useContext(StepsContext);
 
     const navigation = useNavigation();
@@ -26,8 +31,17 @@ const EmployeeCost = ({ route }) => {
         CheckInputs();
     }, [monitoringAssistant, logisticOperation]);
 
+    const handleEmployeeData = () => {
+        const employeeData = {
+            monitoringAssistant,
+            logisticOperation,
+        };
+        setEmployeeCost(employeeData);
+    };
+
     const handleCompleteTask = () => {
-        console.log(tasks);
+        // console.log(tasks);
+        handleEmployeeData();
         let auxData = data;
         auxData.isDone = true;
         let auxTask = tasks;
@@ -35,8 +49,13 @@ const EmployeeCost = ({ route }) => {
         // console.log(auxTask);
         setTasks(auxTask);
 
-        if (CheckTasks()) navigation.navigate('GarrisonCost');
-        else setIsCompleted(true);
+        if (CheckTasks()) {
+            navigation.navigate('GarrisonCost');
+            handleSteps(data);
+        } else {
+            setIsCompleted(true);
+            GenerateReport(data);
+        }
     };
 
     return (
@@ -92,16 +111,10 @@ const EmployeeCost = ({ route }) => {
                         disabledStyle={{ marginTop: 40 }}
                         style={{ marginTop: 40 }}
                         action={handleCompleteTask}
-                        // page="ShippingCost"
+                        page="OperationReport"
                         // params={data}
                         title={CheckTasks() ? 'Finalizar' : 'Avançar'}
                     />
-                    <TouchableOpacity
-                        style={{ marginTop: 40, alignSelf: 'center' }}
-                        onPress={handleCompleteTask}
-                    >
-                        <Text>{}</Text>
-                    </TouchableOpacity>
                 </>
             ) : (
                 <View>
