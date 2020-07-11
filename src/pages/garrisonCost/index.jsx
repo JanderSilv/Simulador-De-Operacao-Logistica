@@ -37,6 +37,7 @@ const GarrisonCost = () => {
         const CheckInputs = () => {
             if (normalOpTime && fiftyOpTime && hundredOpTime && days && nights)
                 setIsDisabled(false);
+            else setIsDisabled(true);
         };
         CheckInputs();
     }, [normalOpTime, fiftyOpTime, hundredOpTime, days, nights]);
@@ -63,6 +64,7 @@ const GarrisonCost = () => {
             fiftyOpTime: parseFloat(fiftyOpTime),
             hundredOpTime: parseFloat(hundredOpTime),
         };
+        // console.log(operationData);
         setGarrisonCost(operationData);
     };
 

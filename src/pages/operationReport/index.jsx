@@ -66,15 +66,21 @@ const OperationReport = () => {
                                 justifyContent: 'space-around',
                             }}
                         >
-                            <Text>{`Guarnição: ${Intl.NumberFormat('pt-BR', {
-                                style: 'currency',
-                                currency: 'BRL',
-                            }).format(step.garrison)}`}</Text>
-                            <Text>{`Frota: R$ ${step.shipping}`}</Text>
+                            <Text>{`Guarnição: R$ ${Intl.NumberFormat(
+                                'pt-BR'
+                            ).format(step.garrison)}`}</Text>
+                            <Text>{`Frota: R$ ${Intl.NumberFormat(
+                                'pt-BR'
+                            ).format(step.shipping)}`}</Text>
                             <Text>{`Refeição: R$ ${step.meal}`}</Text>
                             <Text>{`Hospedagem: R$ ${step.stay}`}</Text>
                             <Text>{`Táxi: R$ ${step.taxi}`}</Text>
-                            {/* <Text>{`Mão de Obra: R$ ${step.shipping}`}</Text> */}
+                            <Text>{`Mão de Obra: R$ ${Intl.NumberFormat(
+                                'pt-BR'
+                            ).format(step.employees)}`}</Text>
+                            <Text>{`Total: R$ ${Intl.NumberFormat(
+                                'pt-BR'
+                            ).format(step.value)}`}</Text>
                         </View>
                     </View>
                 ))}

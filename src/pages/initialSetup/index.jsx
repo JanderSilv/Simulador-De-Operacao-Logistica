@@ -4,6 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import OperationReportContext from '../../contexts/operationReport';
 import CitysData from '../../data/citys.json';
+import EmployeesData from '../../data/employees.json';
 
 import FowardButton from '../../components/ForwardButton';
 import SearchableDropdown from '../../components/SearchableDropdown';
@@ -23,10 +24,12 @@ const InitialSetup = () => {
 
     useEffect(() => {
         const CheckInputs = () => {
-            if (selectedOrigin && selectedDestiny && name) setIsDisabled(false);
+            if (selectedOrigin && selectedDestiny && name && hotel && taxi)
+                setIsDisabled(false);
+            else setIsDisabled(true);
         };
         CheckInputs();
-    }, [selectedDestiny, selectedOrigin, name]);
+    }, [selectedDestiny, selectedOrigin, name, hotel, taxi]);
 
     const handleOperationData = () => {
         const operationData = {

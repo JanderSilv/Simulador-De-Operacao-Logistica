@@ -1,5 +1,7 @@
 import React, { createContext, useState } from 'react';
 
+import EmployeesData from '../../data/employees.json';
+
 const OperationReportContext = createContext({});
 
 // import { Container } from './styles';
@@ -10,6 +12,8 @@ export const OperationReportProvider = ({ children }) => {
     const [employeeCost, setEmployeeCost] = useState({});
 
     const [steps, setSteps] = useState([]);
+    const [maintenance, setMaintenance] = useState(0);
+    const [depreciation, setDepreciation] = useState(0);
     const [report, setReport] = useState([]);
 
     const { taxiPrice, hotelPrice, client, origin, destiny } = initialSetup;
@@ -24,16 +28,36 @@ export const OperationReportProvider = ({ children }) => {
     const { toll, vehicle, fuel } = shippingCost;
     const { monitoringAssistant, logisticOperation } = employeeCost;
 
-    const handleGarrisonCost = () => {
-        // console.log(garrisonCost);
+    const handleTime = () => {
         const value =
-            (normalOpTime * office.normal +
-                fiftyOpTime * office.fifty +
-                hundredOpTime * office.hundred) *
-            days *
-            vehicle;
+            normalOpTime * office.normal +
+            fiftyOpTime * office.fifty +
+            hundredOpTime * office.hundred;
+        // console.log(value);
+        return value;
+    };
+
+    const handleGarrisonCost = () => {
+        // Cálculo: (normal * custo normal + 50% * custo 50% + 100% * custo 100% )  * qnt.dia *qnt.carros
+        const value = handleTime() * days * vehicle;
         // console.log('Guarnição: ' + value);
         return value;
+    };
+
+    const handleMaintenance = () => {
+        // Custo de Manutenção do CF= ((hora da etapa 1+qnt.carros da etapa 1)+(hora da etapa 2+qnt.carros da etapa 2)+(hora da etapa n+qnt.carros da etapa n))*10,44
+        // const maintenance = (handleTime() + vehicle)*(10.44/steps.length);
+        const value = handleTime() + vehicle;
+        const aux = value + maintenance;
+        setMaintenance(aux);
+    };
+
+    const handleDepreciation = () => {
+        // Custo de Depreciação do CF= ((hora da etapa 1+qnt.carros da etapa 1)+(hora da etapa 2+qnt.carros da etapa 2)+(hora da etapa n+qnt.carros da etapa n))*7,96
+        // const depreciation = (handleTime() + vehicle)*(7.96/steps.length);
+        const value = handleTime() + vehicle;
+        const aux = value + depreciation;
+        setDepreciation(aux);
     };
 
     const handleShippingCost = () => {
@@ -66,7 +90,14 @@ export const OperationReportProvider = ({ children }) => {
 
     const handleEmployeesCost = () => {
         // assistente de monitoramento: Custo com guarnição retirado qnt.carros do cálculo * hora/salário funcionário
+        const value =
+            normalOpTime * EmployeesData[0].value * monitoringAssistant;
+        // console.log('monitoringAssistant: ' + value);
         // auxiliar de operação logistica: Verificar se tem, se tiver: horas trabalhos * hora/salário;
+        const value2 =
+            normalOpTime * EmployeesData[1].value * logisticOperation;
+        // console.log('logisticOperation: ' + value2);
+        return value + value2;
     };
 
     const CalculateCost = () => {
@@ -75,20 +106,11 @@ export const OperationReportProvider = ({ children }) => {
             handleShippingCost() +
             handleStayCost() +
             handleMealCost() +
-            handleTaxiCost();
-        console.log('Parcial: ' + value);
+            handleTaxiCost() +
+            handleEmployeesCost();
+        // console.log('Parcial: ' + value);
         return value;
     };
-
-    // const CalculateAllCost = () => {
-    //     const aux = 0;
-    //     const value = steps.map((item) => {
-    //         console.log(item);
-    //         item.value + aux;
-    //     });
-    //     console.log('Total: ' + value);
-    //     return value;
-    // };
 
     const handleSteps = (data) => {
         // console.log(data);
@@ -99,11 +121,12 @@ export const OperationReportProvider = ({ children }) => {
             stay: handleStayCost(),
             meal: handleMealCost(),
             taxi: handleTaxiCost(),
+            employees: handleEmployeesCost(),
             value: CalculateCost(),
         };
         const aux = [...steps];
         aux.push(stepsData);
-        console.log(aux);
+        // console.log(aux);
         setSteps(aux);
         return aux;
     };

@@ -17,6 +17,7 @@ const ForwardButton = (props) => {
     const navigation = useNavigation();
 
     const handleOnPress = () => {
+        action ? action() : null;
         if (page && params) {
             navigation.navigate(page, params);
         } else if (page) {
@@ -25,7 +26,6 @@ const ForwardButton = (props) => {
             null;
         }
         // params ? navigation.navigate(page, params) : navigation.navigate(page);
-        action ? action() : null;
     };
 
     return (
