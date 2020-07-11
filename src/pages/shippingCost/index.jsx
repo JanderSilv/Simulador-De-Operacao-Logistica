@@ -111,12 +111,12 @@ const ShippingCost = ({ route }) => {
                 </View>
             </View>
             <FowardButton
-                // disabled={isDisabled ? true : false}
-                disabledStyle={{ marginTop: 60 }}
-                style={{ marginTop: 60 }}
-                action={handleShippingData}
                 page="EmployeeCost"
                 params={data}
+                action={handleShippingData}
+                style={{ marginTop: 80 }}
+                disabled={isDisabled ? true : false}
+                disabledStyle={{ marginTop: 80 }}
             />
         </View>
     );

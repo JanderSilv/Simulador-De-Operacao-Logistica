@@ -142,10 +142,11 @@ const InitialSetup = () => {
                 </View>
             </View>
             <FowardButton
-                // disabled={isDisabled ? true : false}
                 page="ListSteps"
-                style={{ width: 100 }}
                 action={handleOperationData}
+                style={{ width: 100, marginTop: 40 }}
+                disabled={isDisabled ? true : false}
+                disabledStyle={{ marginTop: 40 }}
             />
         </View>
     );

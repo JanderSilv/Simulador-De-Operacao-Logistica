@@ -191,12 +191,12 @@ const GarrisonCost = () => {
                 </View>
             </View>
             <FowardButton
-                // disabled={isDisabled ? true : false}
-                disabledStyle={{ marginTop: 40 }}
-                style={{ marginTop: 40 }}
-                action={handleOperationData}
                 page="ShippingCost"
+                action={handleOperationData}
                 params={data}
+                style={{ marginTop: 80 }}
+                disabled={isDisabled ? true : false}
+                disabledStyle={{ marginTop: 80 }}
             />
         </ScrollView>
     );

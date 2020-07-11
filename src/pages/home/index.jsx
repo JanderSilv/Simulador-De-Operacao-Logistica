@@ -40,7 +40,16 @@ const Home = () => {
                     </Text>
                 </View>
             </View>
-            <FowardButton title="Iniciar Simulação" page="InitialSetup" />
+            <FowardButton
+                title="Iniciar Simulação"
+                page="InitialSetup"
+                style={{
+                    width: '45%',
+                    height: 40,
+                    borderRadius: 10,
+                }}
+                labelStyle={{ fontSize: 16 }}
+            />
         </View>
     );
 };

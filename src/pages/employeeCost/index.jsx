@@ -1,13 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import CheckBox from '@react-native-community/checkbox';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import StepsContext from '../../contexts/steps';
 import OperationReportContext from '../../contexts/operationReport';
 
 import FowardButton from '../../components/ForwardButton';
-import { globalStyle } from '../../globalStyles';
 
 const EmployeeCost = ({ route }) => {
     const { setEmployeeCost, handleSteps, GenerateReport } = useContext(
@@ -82,47 +81,102 @@ const EmployeeCost = ({ route }) => {
         <View style={{ flex: 1 }}>
             {!isCompleted ? (
                 <>
-                    <View style={{ marginTop: 20, marginHorizontal: 20 }}>
+                    <View style={{ marginTop: 40, marginHorizontal: 20 }}>
                         <Text
                             style={{ fontSize: 16 }}
                         >{`${data.name}: ${data.value}`}</Text>
                     </View>
-                    <View style={{ flex: 0.4, justifyContent: 'space-around' }}>
-                        <View style={{ marginTop: 20, alignItems: 'center' }}>
-                            <Text style={{ textAlign: 'center' }}>
-                                Assistente de Monitoramento
-                            </Text>
-                            <CheckBox
-                                value={monitoringAssistant}
-                                onValueChange={() =>
-                                    monitoringAssistant
-                                        ? setMonitoringAssistant(false)
-                                        : setMonitoringAssistant(true)
-                                }
-                            />
-                        </View>
-                        <View style={{ marginTop: 20, alignItems: 'center' }}>
-                            <Text style={{ textAlign: 'center' }}>
-                                Auxiliar de Operação Logística
-                            </Text>
-                            <CheckBox
-                                value={logisticOperation}
-                                onValueChange={() =>
-                                    logisticOperation
-                                        ? setLogisticOperation(false)
-                                        : setLogisticOperation(true)
-                                }
-                            />
+                    <View
+                        style={{
+                            marginTop: 20,
+                            paddingTop: 20,
+                            flex: 0.4,
+                            borderTopWidth: 1,
+                            borderTopColor: '#C6C6C6',
+                            justifyContent: 'space-around',
+                        }}
+                    >
+                        <Text
+                            style={{
+                                width: '85%',
+                                fontSize: 16,
+                                fontWeight: 'bold',
+                                textAlign: 'center',
+                                alignSelf: 'center',
+                            }}
+                        >
+                            Desmaque caso a etapa não conte com um dos
+                            funcionários
+                        </Text>
+                        <View
+                            style={{
+                                marginVertical: 20,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'space-around',
+                            }}
+                        >
+                            <View
+                                style={{
+                                    width: '45%',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Text
+                                    onPress={() =>
+                                        monitoringAssistant
+                                            ? setMonitoringAssistant(false)
+                                            : setMonitoringAssistant(true)
+                                    }
+                                    style={{
+                                        marginBottom: 5,
+                                        fontSize: 16,
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    Assistente de Monitoramento
+                                </Text>
+                                <CheckBox
+                                    value={monitoringAssistant}
+                                    onValueChange={() =>
+                                        monitoringAssistant
+                                            ? setMonitoringAssistant(false)
+                                            : setMonitoringAssistant(true)
+                                    }
+                                />
+                            </View>
+                            <View
+                                style={{ width: '45%', alignItems: 'center' }}
+                            >
+                                <Text
+                                    onPress={() =>
+                                        logisticOperation
+                                            ? setLogisticOperation(false)
+                                            : setLogisticOperation(true)
+                                    }
+                                    style={{
+                                        marginBottom: 5,
+                                        fontSize: 16,
+                                        textAlign: 'center',
+                                    }}
+                                >
+                                    Auxiliar de Operação Logística
+                                </Text>
+                                <CheckBox
+                                    value={logisticOperation}
+                                    onValueChange={() =>
+                                        logisticOperation
+                                            ? setLogisticOperation(false)
+                                            : setLogisticOperation(true)
+                                    }
+                                />
+                            </View>
                         </View>
                     </View>
                     <FowardButton
-                        // disabled={isDisabled ? true : false}
-                        disabledStyle={{ marginTop: 40 }}
-                        style={{ marginTop: 40 }}
-                        action={handleEmployeeData}
-                        // page="OperationReport"
-                        // params={data}
                         title={'Finalizar Etapa'}
+                        action={handleEmployeeData}
+                        style={{ marginTop: 40 }}
                     />
                 </>
             ) : (
@@ -133,13 +187,13 @@ const EmployeeCost = ({ route }) => {
                         justifyContent: 'center',
                     }}
                 >
-                    <Text>
+                    <Text style={{ fontSize: 18 }}>
                         {!CheckTasks()
                             ? 'Cadastro Completo'
                             : 'Etapa concluída'}
                     </Text>
                     <FowardButton
-                        style={{ marginTop: 40 }}
+                        style={{ marginTop: 50 }}
                         action={handleCompleteSimulation}
                         title={!CheckTasks() ? 'Finalizar' : 'Avançar'}
                     />

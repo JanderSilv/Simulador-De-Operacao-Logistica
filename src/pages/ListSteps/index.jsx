@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
     View,
     Text,
@@ -27,12 +27,31 @@ const HandleRenderSteps = ({ value, name, handleInput }) => (
     </View>
 );
 
+const handleSeparatorSteps = () => (
+    <View style={{ alignItems: 'center' }}>
+        <AntDesign name="arrowdown" size={35} color="gray" />
+    </View>
+);
+
 const ListSteps = () => {
     const { setTasks } = useContext(StepsContext);
     const [steps, setSteps] = useState([
         { name: `1° Etapa`, value: ``, isDone: false },
     ]);
-    // console.log(steps);
+
+    const [isDisabled, setIsDisabled] = useState(true);
+
+    useEffect(() => {
+        const CheckInputs = () => {
+            steps.map((item) => {
+                if (!item.value) {
+                    setIsDisabled(true);
+                    return;
+                } else setIsDisabled(false);
+            });
+        };
+        CheckInputs();
+    }, [steps]);
 
     const handleChanges = (index, value, name) => {
         let copyInputs = [...steps];
@@ -68,12 +87,6 @@ const ListSteps = () => {
         setTasks(steps);
     };
 
-    const handleSeparatorSteps = () => (
-        <View style={{ alignItems: 'center' }}>
-            <AntDesign name="arrowdown" size={35} color="gray" />
-        </View>
-    );
-
     const handleFooter = () => (
         <View style={{ alignItems: 'center', marginBottom: 10 }}>
             <Feather name="more-horizontal" size={40} color="gray" />
@@ -95,21 +108,12 @@ const ListSteps = () => {
                     <Text style={{ color: 'white' }}>Adicionar nova etapa</Text>
                 </TouchableOpacity>
             </View>
-            {/* <TouchableOpacity
-            style={{
-                paddingVertical: 10,
-                paddingHorizontal: 10,
-                backgroundColor: 'green',
-                borderRadius: 10,
-            }}
-            onPress={() => console.log(stepsData)}
-        >
-            <Text style={{ color: 'white' }}>Finalizar</Text>
-        </TouchableOpacity> */}
             <FowardButton
-                style={{ marginTop: 40 }}
-                action={submitSteps}
                 page="GarrisonCost"
+                action={submitSteps}
+                style={{ marginTop: 80 }}
+                disabled={isDisabled ? true : false}
+                disabledStyle={{ marginTop: 80 }}
             />
         </View>
     );

@@ -8,6 +8,7 @@ const ForwardButton = (props) => {
     const {
         title,
         page,
+        labelStyle,
         style,
         action,
         params,
@@ -25,7 +26,6 @@ const ForwardButton = (props) => {
         } else {
             null;
         }
-        // params ? navigation.navigate(page, params) : navigation.navigate(page);
     };
 
     return (
@@ -41,33 +41,34 @@ const ForwardButton = (props) => {
                 style={
                     disabled
                         ? [
-                              disabledStyle,
                               {
+                                  height: 35,
                                   paddingVertical: 5,
                                   paddingHorizontal: 15,
-                                  borderWidth: 1,
-                                  borderColor: 'gray',
-                                  backgroundColor: '#cccccc',
+                                  backgroundColor: 'gray',
                                   borderRadius: 40,
                                   alignItems: 'center',
                                   justifyContent: 'center',
                               },
+                              disabledStyle,
                           ]
                         : [
-                              style,
                               {
+                                  height: 35,
                                   paddingVertical: 5,
                                   paddingHorizontal: 15,
-                                  borderWidth: 1,
-                                  borderColor: 'gray',
+                                  backgroundColor: '#164894',
                                   borderRadius: 40,
                                   alignItems: 'center',
                                   justifyContent: 'center',
                               },
+                              style,
                           ]
                 }
             >
-                <Text>{title ? title : 'Avançar'}</Text>
+                <Text style={[{ color: 'white' }, labelStyle]}>
+                    {title ? title : 'Avançar'}
+                </Text>
             </TouchableOpacity>
         </View>
     );

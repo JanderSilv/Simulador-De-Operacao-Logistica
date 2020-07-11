@@ -1252,6 +1252,11 @@
     color "^3.1.2"
     react-native-iphone-x-helper "^1.2.1"
 
+"@shankarmorwal/react-native-exit-on-double-press@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@shankarmorwal/react-native-exit-on-double-press/-/react-native-exit-on-double-press-1.0.2.tgz#9754488ad81121b2c1023094324feaa62ddc7a8c"
+  integrity sha512-JaDpMhg1j8kU0QmoEQLflYtCnTTK8mmFYazK4zTnQOk2F6rFmsMIZt2Eka27QKQfqRieoZKmtLvOmUsbB5ccew==
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
