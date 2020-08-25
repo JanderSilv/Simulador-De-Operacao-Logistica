@@ -1,5 +1,5 @@
 # 🚚 SCO - Simulador de Condições Operacionais
- Aplicativo que auxilia na validação e despacho de produtos com códigos de barras.
+ Aplicativo que gera um orçamento de uma operação logística.
  
 <h1 align="center">
     <img alt="BarCodeProductValidation" title="#delicinha" src=".github/SCO.png" width="800px" />
